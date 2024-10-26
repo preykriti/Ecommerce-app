@@ -10,11 +10,11 @@ import Cart from './pages/Cart';
 import PlaceOrder from './pages/PlaceOrder';
 import Login from './pages/Login';
 import Orders from './pages/Orders';
-
+import Navbar from './components/Navbar';
 function App() {
-
   return (
     <div>
+      <Navbar/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/collection" element={<Collection />} />

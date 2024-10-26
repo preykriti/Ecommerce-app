@@ -9,25 +9,11 @@ const PORT = process.env.port || 8080;
 //routes
 
 
-
-
 //db connection
 connectDB()
 
 app.use(
-  cors({
-    origin: "http://localhost:5173/",
-    methods: ['GET', 'POST', 'DELETE', 'PUT'],
-    allowedHeaders: [
-        'Content-Type',
-        'Authorization',
-        'Cache-Control',
-        'Expires',
-        'Pragma'
-    ],
-    credentials: true
-  })
-);
+  cors());
 app.use(cookieParser());
 //to make app understand json
 app.use(express.json());
