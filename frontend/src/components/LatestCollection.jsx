@@ -1,14 +1,29 @@
 import { ShopContext } from "../context/ShopContext"
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
+import ProductItem from "./ProductItem.jsx";
 
 const LatestCollection = () => {
+    const [latestProduct, setLatestProduct] = useState([]);
     const {products}=useContext(ShopContext);
      console.log(products);
+     useEffect(()=>{
+        setLatestProduct(products.slice(0,9));
+     },[])
+
   return (
     <div>
-       
+      <div>LATEST COLLECTION</div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 px-2">
+        {latestProduct.map((item, index) => (
+          <ProductItem
+            key={index} id={item._id} image={item.image}
+            name={item.name}
+            price={item.price}
+          />
+        ))}
+      </div>
     </div>
-  )
+  );
 }
 
 export default LatestCollection
