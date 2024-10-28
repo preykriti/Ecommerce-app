@@ -2,7 +2,7 @@ import pic1 from "../assets/pic1.jpg"
 
 const Banner = () => {
   return (
-    <div className="border border-slate-200  m-3 flex flex-col sm:flex-row ">
+    <div className="border border-slate-200 mt-3 flex flex-col sm:flex-row ">
       {/* left side */}
       <div className="items-center justify-center py-10 sm:py-0 w-full sm:w-1/2 bg-slate-200 flex flex-col gap-4">
         <div className="flex items-center gap-2">

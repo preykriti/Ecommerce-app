@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-a.active hr{
-    display: block;
+
+.container{
+    max-width: 1248px;
+    margin: 0px auto;
+}
+
+a.active hr {
+  display: block;
+}
+@media (max-width: 640px) {
+  a.active {
+    background-color: black;
+    color: white;
+  }
 }

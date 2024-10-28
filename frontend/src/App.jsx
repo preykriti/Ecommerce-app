@@ -11,9 +11,10 @@ import PlaceOrder from './pages/PlaceOrder';
 import Login from './pages/Login';
 import Orders from './pages/Orders';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 function App() {
   return (
-    <div>
+    <div className="container">
       <Navbar/>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -26,6 +27,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/orders" element={<Orders/>} />
       </Routes>
+      <Footer/>
     </div>
   );
 }
