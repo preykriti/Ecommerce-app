@@ -21,7 +21,8 @@ export default function ProductItem({id, image, name, price}) {
             component="img"
             image={image}
             alt={name}
-            sx={{ objectFit: "cover", height: 300, width: "100%" }}
+            sx={{ objectFit: "cover", height: 300, width: "100%", }}
+            loading= "lazy"
           />
           <CardContent>
             <Typography gutterBottom variant="h6" component="div">

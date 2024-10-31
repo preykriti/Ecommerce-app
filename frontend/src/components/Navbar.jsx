@@ -4,10 +4,12 @@ import SearchIcon from "@mui/icons-material/Search";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import { ShopContext } from "../context/ShopContext";
 
 const Navbar = () => {
+  const {setShowSearch} = useContext(ShopContext)
   const [visible, setVisible] = useState(false);
   return (
     <div className="flex items-center justify-between py-4 px-4 font-medium bg-slate-200">
@@ -32,7 +34,7 @@ const Navbar = () => {
       </ul>
 
       <div className="flex items-center gap-6">
-        <SearchIcon className="cursor-pointer" />
+        <SearchIcon className="cursor-pointer" onClick={()=>setShowSearch(true)} />
         <div className="group relative">
           <AccountCircleIcon className="cursor-pointer" />
           <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4">
