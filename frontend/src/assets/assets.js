@@ -1,6 +1,7 @@
 
 import img1 from "./img1.jpg";
 import img2 from "./img2.jpg";
+import image2 from "./image2.jpg";
 import img3 from "./img3.jpg";
 import img4 from "./img4.jpg";
 import image_4 from "./image_4.jpg";
@@ -34,7 +35,7 @@ export const products = [
     name: "Men's Polo Shirt",
     description: "A casual and stylish polo shirt made with soft fabric.",
     price: 300,
-    image: [img2],
+    image: [img2,image2],
     category: "Men",
     subCategory: "Topwear",
     sizes: ["M", "L", "XL"],

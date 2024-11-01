@@ -19,7 +19,7 @@ export default function ProductItem({id, image, name, price}) {
           <CardMedia
             className="hover:scale-110 transition ease-in-out"
             component="img"
-            image={image}
+            image={image[0]}
             alt={name}
             sx={{ objectFit: "cover", height: 300, width: "100%", }}
             loading= "lazy"
