@@ -6,7 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import CartTotal from "../components/CartTotal";
 
 const Cart = () => {
-  const { products, currency, cartItems, updateQuantity } = useContext(ShopContext);
+  const { products, currency, cartItems, updateQuantity , navigate} = useContext(ShopContext);
   const [cartData, setCartData] = useState([]);
 
   useEffect(() => {
@@ -77,7 +77,7 @@ const Cart = () => {
                 type="number"
                 min={1}
                 defaultValue={item.quantity}
-              ></input>
+              />
               <DeleteOutlineOutlinedIcon
                 onClick={() => updateQuantity(item._id, item.size, 0)}
                 className="cursor-pointer"
@@ -91,7 +91,7 @@ const Cart = () => {
         <div className="sm:w-[450px] w-full">
           <CartTotal />
           <div className="w-full text-end">
-            <button className="bg-black text-white text-sm py-3 px-8 my-8">PROCEED TO CHECKOUT</button>
+            <button className="bg-black text-white text-sm py-3 px-8 my-8" onClick={()=>navigate("/place-order")}>PROCEED TO CHECKOUT</button>
           </div>
         </div>
       </div>
