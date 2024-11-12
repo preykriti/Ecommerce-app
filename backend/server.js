@@ -1,11 +1,16 @@
+import dotenv from "dotenv";
+dotenv.config();
 import express from "express";
 import connectDB from "./db.js";
 import cors from "cors";
+
 import cookieParser from "cookie-parser";
 import connectCloudinary from "./config/cloudinary.js";
+import userRouter from "./routes/userRoute.js";
 
 const app = express();
 const PORT = process.env.port || 8082;
+app.use(express.json());
 
 //db connection
 connectDB();
@@ -15,9 +20,10 @@ connectCloudinary();
 app.get("/", (req, res) => {
   res.send("API WORKING");
 });
+app.use("/api/user", userRouter);
 
 //middlewares
-app.use(express.json());
+
 app.use(cors());
 app.use(cookieParser());
 
