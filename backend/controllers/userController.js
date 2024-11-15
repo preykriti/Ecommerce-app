@@ -30,15 +30,35 @@ const userRegister = async (req, res) => {
         
     } catch (error) {
         console.log(error);
-        res.status(500).json({success:false, message: error.message})
-        
+        res.status(500).json({success:false, message: error.message}) 
     }
 
 
 };
 
 const userLogin = async (req, res) => {
-  //checking for validation
+    const {email, password} = req.body;
+  try {
+    //check if user exists
+    let user = await userModel.findOne({email});
+    if(!user){
+        return res.status(400).json({success:false, message:"The user doesn't exist."});
+    }
+    
+    //check if password is correct
+    let comparePassword = await bcrypt.compare(password, user.password);
+    if(!comparePassword){
+        return res.status(400).json({success:false, message:"Invalid credential"});
+    }
+
+    const token = createToken(user._id);
+    res.status(200).json({success: true, message:token})
+    
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: error.message });
+    
+  }
   //
 };
 const adminLogin = async (req, res) => {};
