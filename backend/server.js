@@ -7,6 +7,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import connectCloudinary from "./config/cloudinary.js";
 import userRouter from "./routes/userRoute.js";
+import productRouter from "./routes/productRoute.js";
 
 const app = express();
 const PORT = process.env.port || 8082;
@@ -21,6 +22,7 @@ app.get("/", (req, res) => {
   res.send("API WORKING");
 });
 app.use("/api/user", userRouter);
+app.use("/api/product", productRouter)
 
 //middlewares
 
