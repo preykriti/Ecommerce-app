@@ -1,4 +1,4 @@
-import productModel from "../controllers/productController.js";
+
 
 const addProduct = async (req, res) => {};
 

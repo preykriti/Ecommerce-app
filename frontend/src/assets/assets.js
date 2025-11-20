@@ -16,6 +16,7 @@ import img11 from "./img11.jpg";
 import img12 from "./img12.jpg";
 
 import about_us from "./about-us.jpg";
+import contact_us from "./contact-us.jpg";
 
 import esewa_logo from "./esewa_logo.png";
 import khalti_logo from "./khalti_logo.png";
@@ -23,7 +24,8 @@ import khalti_logo from "./khalti_logo.png";
 export const assets = {
   esewa_logo: esewa_logo,
   khalti_logo: khalti_logo,
-  about_us: about_us
+  about_us: about_us,
+  contact_us: contact_us
 }
 
 
