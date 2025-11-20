@@ -80,7 +80,7 @@ const Navbar = () => {
           </div>
           <NavLink
             onClick={() => setVisible(false)}
-            className="border-b border-tjjj py-2 border-slate-300 pl-3"
+            className="border-b border-t py-2 border-slate-300 pl-3"
             to="/"
           >
             HOME

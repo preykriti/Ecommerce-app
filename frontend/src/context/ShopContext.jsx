@@ -2,6 +2,8 @@ import { createContext, useEffect, useState } from "react";
 import { products } from "../assets/assets.js";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
+
 
 export const ShopContext = createContext();
 
@@ -94,3 +96,7 @@ const navigate = useNavigate();
   );
 };
 export default ShopContextProvider;
+
+ShopContextProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
