@@ -10,8 +10,14 @@ import userRouter from "./routes/userRoute.js";
 import productRouter from "./routes/productRoute.js";
 
 const app = express();
-const PORT = process.env.port || 8082;
+const PORT = process.env.port || 8000;
 app.use(express.json());
+
+app.use(cors({
+    origin: 'http://localhost:5174',   // frontend URL
+    methods: 'GET,POST,PUT,DELETE',
+    credentials: true
+}));
 
 //db connection
 connectDB();
