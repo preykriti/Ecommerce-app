@@ -1,4 +1,4 @@
-import upload_img from './upload.jgp'
+import upload_img from './upload.jpg';
 
 export const assets = {
     upload_img
