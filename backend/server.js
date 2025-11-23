@@ -14,10 +14,11 @@ const PORT = process.env.port || 8000;
 app.use(express.json());
 
 app.use(cors({
-    origin: 'http://localhost:5174',   // frontend URL
-    methods: 'GET,POST,PUT,DELETE',
-    credentials: true
+  origin: ['http://localhost:5174', 'http://localhost:5173'],
+  methods: ['GET','POST','PUT','DELETE'],
+  credentials: true,
 }));
+
 
 //db connection
 connectDB();

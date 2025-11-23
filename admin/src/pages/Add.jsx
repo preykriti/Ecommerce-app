@@ -12,6 +12,7 @@ const Add = ({token}) => {
   const [subCategory, setSubCategory] = useState("");
   const [price, setPrice] = useState("");
   const [sizes, setSizes] = useState([]);
+  const [bestseller, setBestseller] = useState(false);
 
   const onSubmit = async (e) => {
     console.log("Submitting form");
@@ -25,6 +26,7 @@ const Add = ({token}) => {
       formData.append("subCategory", subCategory);
       formData.append("price", price);
       formData.append("sizes", JSON.stringify(sizes));
+      formData.append("bestseller", bestseller);
 
       images.forEach((img, index)=>{
         if(img){
@@ -42,6 +44,7 @@ const Add = ({token}) => {
         setPrice("");
         setSizes([]);
         setImages([null, null, null, null]);
+        setBestseller(false);
       }else{
         toast.error(response.data.message);
       }
@@ -176,6 +179,17 @@ const Add = ({token}) => {
             </div>
           ))}
         </div>
+      </div>
+      <div>
+        <input
+          type="checkbox"
+          id="bestseller"
+          name="bestseller"
+          value="bestseller"
+          checked={bestseller}
+          onChange={(e) => setBestseller(e.target.checked)}
+        />
+        <label className="ml-2" htmlFor="bestseller">Mark as Bestseller</label>
       </div>
 
       <button
