@@ -9,7 +9,7 @@ export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
   const currency = "Rs.";
-  const delivery = 100;
+  const deliveryCharge = 100;
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
@@ -150,7 +150,7 @@ const ShopContextProvider = (props) => {
   const value = {
     products,
     currency,
-    delivery,
+    deliveryCharge,
     search,
     setSearch,
     showSearch,

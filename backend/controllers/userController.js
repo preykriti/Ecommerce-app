@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import userModel from "../models/userModel.js";
 import { validationResult } from "express-validator";
 import jwt from "jsonwebtoken";
+
 const createToken = (id)=>{
     return jwt.sign({id}, process.env.JWT_TOKEN);
 }
