@@ -181,17 +181,6 @@ const PlaceOrder = () => {
           {/* payment method selection */}
           <div className="flex gap-3 flex-col lg:flex-row mt-3">
             <div
-              onClick={() => setMethod("esewa")}
-              className="flex items-center gap-3 border p-2 px-3 cursor-pointer"
-            >
-              <p
-                className={`min-w-3.5 h-3.5 border rounded-full ${
-                  method === "esewa" ? "bg-green-400" : ""
-                }`}
-              ></p>
-              <img className="h-4 mx-4" src={assets.esewa_logo} alt="" />
-            </div>
-            <div
               onClick={() => setMethod("khalti")}
               className="flex items-center gap-3 border p-2 px-3 cursor-pointer"
             >

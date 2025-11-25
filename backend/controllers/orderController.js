@@ -22,13 +22,20 @@ const placeOrder = async (req, res) => {
     }
 }
 
-// order using online payment
+// order using khalti payment
 const placeOnlineOrder = async (req, res) => {
 }
 
  
 // orders data for admin panel
 const allOrders = async (req, res) => {
+    try {
+        const orders = await orderModel.find({});
+        res.status(200).send({success:true, orders});
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({success:false, message:error.message});
+    }
 }
 
 // orders data for user for frontend
@@ -45,6 +52,14 @@ const userOrders = async (req, res) => {
 
 // update order status for admin panel 
 const updateOrderStatus = async (req, res) => {
+    try {
+        const {orderId, status} = req.body;
+        await orderModel.findByIdAndUpdate(orderId, {status});
+        res.status(200).send({success:true, message:"Order status updated successfully"});
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({success:false, message:error.message});
+    }
 }
 
 
