@@ -34,18 +34,32 @@ const placeOnlineOrder = async (req, res) => {
   try {
     const { userId, items, amount, address } = req.body;
 
+    const orderData = {
+      userId,
+      items,
+      amount,
+      address,
+      paymentMethod: "KHALTI",
+      payment: false,
+      status: "Pending",
+      date: Date.now(),
+    };
+
+    const newOrder = new orderModel(orderData);
+    await newOrder.save();
+
     const payload = {
       return_url: process.env.KHALTI_RETURN_URL,
       website_url: process.env.KHALTI_WEBSITE_URL,
       amount: amount * 100,
-      purchase_order_id: "order_" + Date.now(),
+      purchase_order_id: newOrder._id.toString(),
       purchase_order_name: "Order Payment",
       customer_info: {
         name: `${address.firstName} ${address.lastName}`,
         email: address.email,
         phone: address.phone,
       },
-      merchant_username: "Shoppy ecommerce"
+      merchant_username: "Shoppy ecommerce",
     };
 
     const khaltiResponse = await axios.post(
@@ -58,13 +72,17 @@ const placeOnlineOrder = async (req, res) => {
         },
       }
     );
+
+    await orderModel.findByIdAndUpdate(newOrder._id, {
+      pidx: khaltiResponse.data.pidx,
+    });
+
     res.status(200).send({
       success: true,
       payment_url: khaltiResponse.data.payment_url,
       pidx: khaltiResponse.data.pidx,
     });
   } catch (error) {
-    console.log("hi");
     console.log(error.response?.data || error);
     res
       .status(500)
@@ -75,7 +93,24 @@ const placeOnlineOrder = async (req, res) => {
 // verify khalti payment
 const verifyKhalti = async (req, res) => {
   try {
-    const { pidx, userId, items, amount, address } = req.body;
+    const { pidx } = req.body;
+
+    // finding existing order with pidx
+    const order = await orderModel.findOne({ pidx });
+
+    if (!order) {
+      return res.status(404).send({
+        success: false,
+        message: "Order not found",
+      });
+    }
+
+    if (order.payment) {
+      return res.status(200).send({
+        success: true,
+        message: "Payment already verified",
+      });
+    }
 
     const verifyResponse = await axios.post(
       "https://dev.khalti.com/api/v2/epayment/lookup/",
@@ -88,24 +123,24 @@ const verifyKhalti = async (req, res) => {
     );
 
     if (verifyResponse.data.status === "Completed") {
-      const orderData = {
-        userId,
-        items,
-        amount,
-        address,
-        paymentMethod: "KHALTI",
+      await orderModel.findByIdAndUpdate(order._id, {
         payment: true,
-        date: Date.now(),
-      };
+        status: "Order Placed",
+      });
 
-      const newOrder = new orderModel(orderData);
-      await newOrder.save();
+      // clear user cart
+      await userModel.findByIdAndUpdate(order.userId, { cartData: {} });
 
-      await userModel.findByIdAndUpdate(userId, { cartData: {} });
-
-      res.status(200).send({ success: true, message: "Payment verified & order placed" });
+      res.status(200).send({
+        success: true,
+        message: "Payment verified & order placed",
+      });
     } else {
-      res.status(400).send({ success: false, message: "Payment not completed" });
+      await orderModel.findByIdAndDelete(order._id);
+      res.status(400).send({
+        success: false,
+        message: "Payment not completed",
+      });
     }
   } catch (error) {
     console.log(error);
@@ -156,5 +191,5 @@ export {
   allOrders,
   userOrders,
   updateOrderStatus,
-  verifyKhalti
+  verifyKhalti,
 };

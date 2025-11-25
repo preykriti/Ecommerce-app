@@ -14,7 +14,7 @@ orderRouter.post("/placeorder",authUser, placeOrder);
 orderRouter.post("/placeonlineorder", authUser, placeOnlineOrder);
 orderRouter.post("/userorders", authUser, userOrders);
 
-orderRouter.post("/verifykhalti", authUser, verifyKhalti);
+orderRouter.post("/verifykhalti", verifyKhalti);
 
 
 export default orderRouter;
