@@ -14,6 +14,7 @@ import Footer from "./components/Footer";
 import Search from "./components/Search";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import VerifyKhalti from "./pages/VerifyKhalti";
 function App() {
   return (
     <div className="container">
@@ -30,6 +31,7 @@ function App() {
         <Route path="/place-order" element={<PlaceOrder />} />
         <Route path="/login" element={<Login />} />
         <Route path="/orders" element={<Orders />} />
+        <Route path="/verify" element={<VerifyKhalti />} />
       </Routes>
       <Footer />
     </div>

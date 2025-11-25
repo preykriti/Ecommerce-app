@@ -65,6 +65,17 @@ const PlaceOrder = () => {
             toast.error(response.data.message);
           }
           break;
+        
+        case "khalti":
+          const responseKhalti = await axios.post(backendUrl + "/api/order/placeonlineorder", orderData, {headers: {token}});
+
+          if(responseKhalti.data.success){
+            window.location.href = responseKhalti.data.payment_url;
+          }else{
+            toast.error(responseKhalti.data.message);
+          }
+          break;
+
         default:
           break;
       }
