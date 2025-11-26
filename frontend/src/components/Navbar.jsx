@@ -1,4 +1,3 @@
-// import React from 'react'
 import { Link, NavLink } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -26,101 +25,120 @@ const Navbar = () => {
     setCartItems({});
   };
   return (
-    <div className="flex items-center justify-between py-4 px-4 font-medium bg-slate-200">
-      <h1 className="font-bold  text-2xl text-slate-700">SHOPPY</h1>
-      <ul className="hidden sm:flex gap-5 text-sm text-slate-700 ">
-        <NavLink to="/" className="flex flex-col items-center gap-1">
-          <p>HOME</p>
-          <hr className="w-2/4 border-none h-[1.5px] bg-slate-700 hidden" />
+    <div className="flex items-center justify-between py-5 px-6 font-medium bg-slate-900 text-white">
+      <Link to="/">
+        <h1 className="font-bold text-2xl tracking-tight">SHOPPY</h1>
+      </Link>
+
+      <ul className="hidden sm:flex gap-8 text-sm text-slate-200">
+        <NavLink to="/" className="flex flex-col items-center gap-1 group">
+          <p className="group-hover:text-indigo-500 transition">HOME</p>
+          <hr className="w-0 group-hover:w-full border-none h-[2px] bg-indigo-700 transition-all duration-300" />
         </NavLink>
-        <NavLink to="/collection" className="flex flex-col items-center gap-1">
-          <p>COLLECTION</p>
-          <hr className="w-2/4 border-none h-[1.5px] bg-slate-700 hidden" />
+        <NavLink
+          to="/collection"
+          className="flex flex-col items-center gap-1 group"
+        >
+          <p className="group-hover:text-indigo-500 transition">COLLECTION</p>
+          <hr className="w-0 group-hover:w-full border-none h-[2px] bg-indigo-700 transition-all duration-300" />
         </NavLink>
-        <NavLink to="/about" className="flex flex-col items-center gap-1">
-          <p>ABOUT</p>
-          <hr className="w-2/4 border-none h-[1.5px] bg-slate-700 hidden" />
+        <NavLink to="/about" className="flex flex-col items-center gap-1 group">
+          <p className="group-hover:text-indigo-500 transition">ABOUT</p>
+          <hr className="w-0 group-hover:w-full border-none h-[2px] bg-indigo-700 transition-all duration-300" />
         </NavLink>
-        <NavLink to="/contact" className="flex flex-col items-center gap-1">
-          <p>CONTACT</p>
-          <hr className="w-2/4 border-none h-[1.5px] bg-slate-700 hidden" />
+        <NavLink
+          to="/contact"
+          className="flex flex-col items-center gap-1 group"
+        >
+          <p className="group-hover:text-indigo-500 transition">CONTACT</p>
+          <hr className="w-0 group-hover:w-full border-none h-[2px] bg-indigo-700 transition-all duration-300" />
         </NavLink>
       </ul>
 
       <div className="flex items-center gap-6">
         <SearchIcon
-          className="cursor-pointer"
+          className="cursor-pointer hover:text-indigo-700 transition"
           onClick={() => setShowSearch(true)}
         />
         <div className="group relative">
           <AccountCircleIcon
             onClick={() => (token ? null : navigate("/login"))}
-            className="cursor-pointer"
+            className="cursor-pointer hover:text-indigo-700 transition"
           />
 
           {token && (
             <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4">
-              <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded">
-                <p className="cursor-pointer hover:text-black">My Profile</p>
-                <p onClick={()=>navigate("/orders")} className="cursor-pointer hover:text-black">Orders</p>
-                <p onClick={logout} className="cursor-pointer hover:text-black">
+              <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-800 text-slate-200 rounded-lg shadow-xl">
+                <p className="cursor-pointer hover:text-indigo-700 transition">
+                  My Profile
+                </p>
+                <p
+                  onClick={() => navigate("/orders")}
+                  className="cursor-pointer hover:text-indigo-700 transition"
+                >
+                  Orders
+                </p>
+                <p
+                  onClick={logout}
+                  className="cursor-pointer hover:text-indigo-700 transition"
+                >
                   Logout
                 </p>
               </div>
             </div>
           )}
         </div>
-        <Link to="/cart" className="relative">
+        <Link to="/cart" className="relative hover:text-indigo-700 transition">
           <ShoppingBagOutlinedIcon />
-          <p className="absolute right-[-5px] bottom-[5px] w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[8px]">
+          <p className="absolute right-[-5px] bottom-[5px] w-4 text-center leading-4 bg-indigo-700 text-white aspect-square rounded-full text-[8px]">
             {getCartCount()}
           </p>
         </Link>
         <MenuIcon
-          onClick={() => {
-            setVisible(true);
-          }}
+          onClick={() => setVisible(true)}
+          className="cursor-pointer hover:text-indigo-700 transition"
           sx={{ display: { xs: "block", sm: "none" } }}
         />
       </div>
+
       {/* sidebar menu for small screen */}
       <div
-        className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all ${
+        className={`absolute z-10 top-0 right-0 bottom-0 overflow-hidden bg-slate-300 transition-all ${
           visible ? "w-full" : "w-0"
         }`}
       >
-        <div className="flex flex-col text-gray-600">
+        <div className="flex flex-col text-slate-800">
           <div
             onClick={() => setVisible(false)}
-            className="flex items-center gap-4 p-3 cursor-pointer"
+            className="flex items-center gap-4 p-4 cursor-pointer hover:text-indigo-700 transition"
           >
             <ArrowBackIosIcon />
             <p>Back</p>
           </div>
           <NavLink
             onClick={() => setVisible(false)}
-            className="border-b border-t py-2 border-slate-300 pl-3"
+            className="border-b border-t py-3 border-slate-700 pl-4 hover:bg-slate-400  transition"
             to="/"
           >
             HOME
           </NavLink>
           <NavLink
             onClick={() => setVisible(false)}
-            className="border-b py-2 border-slate-300 pl-3"
+            className="border-b py-3 border-slate-700 pl-4 hover:bg-slate-400 transition"
             to="/collection"
           >
             COLLECTION
           </NavLink>
           <NavLink
             onClick={() => setVisible(false)}
-            className="border-b py-2 border-slate-300 pl-3"
+            className="border-b py-3 border-slate-700 pl-4 hover:bg-slate-400 transition"
             to="/about"
           >
             ABOUT
           </NavLink>
           <NavLink
             onClick={() => setVisible(false)}
-            className="border-b py-2 border-slate-300 pl-3"
+            className="border-b py-3 border-slate-700 pl-4 hover:bg-slate-400 transition"
             to="/contact"
           >
             CONTACT
@@ -132,16 +150,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-// {
-//     _id: "aaa",
-//     name: "Women Tshirt",
-//     description: "A lighweight, cotton tshirt",
-//     price: 200,
-//     image: [img1.png],
-//     category: "Women",
-//     subCategory: "Topwear",
-//     sizes: ["S", "M", "L"],
-//     date: 1234455,
-//     bestseller: true,
-// }

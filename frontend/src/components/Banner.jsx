@@ -1,24 +1,42 @@
-import pic1 from "../assets/pic1.jpg"
+import { Link } from "react-router-dom";
+import pic1 from "../assets/pic1.jpg";
 
 const Banner = () => {
   return (
-    <div className="border border-slate-200 mt-3 flex flex-col sm:flex-row ">
-      {/* left side */}
-      <div className="items-center justify-center py-10 sm:py-0 w-full sm:w-1/2 bg-slate-200 flex flex-col gap-4">
-        <div className="flex items-center gap-2">
-          <p className="w-8 h-[2px] bg-slate-900 md:w-11"></p>
-          <p>OUR BEST SELLER</p>
-        </div>
-        <h1 className="text-3xl">LATEST ARRIVALS</h1>
-        <div className="flex items-center gap-2">
-          <p>SHOP NOW</p>
-          <p className="w-8 h-[2px] bg-slate-900 md:w-11"></p>
+    <div className="mt-6 relative h-96 sm:h-[500px] rounded-lg overflow-hidden">
+      <img
+        src={pic1}
+        alt="latest arrival"
+        className="w-full h-full object-cover"
+      />
+
+      {/* gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-slate-900/60 to-transparent"></div>
+
+      {/*left side content */}
+      <div className="absolute inset-0 flex items-center px-8 sm:px-16">
+        <div className="max-w-lg">
+          <div className="inline-block bg-indigo-700 text-white px-3 py-1 rounded text-xs tracking-widest mb-4">
+            NEW COLLECTION
+          </div>
+          <h1 className="text-5xl sm:text-6xl font-bold tracking-wide text-white leading-tight mb-4">
+            SUMMER
+            <br />
+            <span className="text-indigo-500 font-light">ESSENTIALS</span>
+          </h1>
+          <p className="text-slate-200 mb-6 text-lg">
+            Fresh styles for the season ahead
+          </p>
+          <Link
+            to="/collection"
+            className="inline-block bg-white text-slate-900 px-8 py-3 rounded-md font-medium tracking-wide hover:bg-slate-100 transition"
+          >
+            SHOP NOW
+          </Link>
         </div>
       </div>
-      {/* right side */}
-      <img className="w-full sm:w-1/2 " src={pic1} alt="latest arrival" />
     </div>
   );
-}
+};
 
-export default Banner
+export default Banner;
