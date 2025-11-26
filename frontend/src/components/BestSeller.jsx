@@ -16,7 +16,7 @@ const BestSeller = () => {
     <div className="my-10">
       <div className="text-center flex flex-col items-center text-2xl py-8">
         <Title text1="BEST" text2="SELLERS" />
-        <p className="text-gray-600 w-3/4 m-auto text-xs sm:text-sm md:text-base">
+        <p className="text-gray-600 w-3/4 text-xs md:text-sm">
           Discover our top-selling products that customers love!
         </p>
       </div>

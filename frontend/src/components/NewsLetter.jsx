@@ -1,25 +1,31 @@
+import { useState } from "react";
+import { toast } from "react-toastify";
 
 
 const NewsLetter = () => {
-    const onSubmitHandler = (event) => {
-      event.preventDefault();
-    };
+  const [email, setEmail] = useState("");
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+    toast.success("Subscribed to newsletter successfully!");
+    setEmail("");
+  };
   return (
     <div className="text-center m-3">
       <p className="text-xl font-bold p-2">Subscribe now & get 20% off</p>
       <p className="text-slate-600 text-xs">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit, a.
+        Join our newsletter to get exclusive discounts, product updates, and special offers.
       </p>
-      <form className="w-full sm:w-1/2 border flex items-center gap-3 mx-auto my-3 pl-3">
+      <form onSubmit={onSubmitHandler} className="w-full sm:w-1/2 border flex items-center gap-3 mx-auto my-3 pl-3">
         <input
           className=" w-full sm:flex-1"
           type="email"
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
           placeholder="Enter your email"
         ></input>
         <button
-          onSubmit={onSubmitHandler}
           type="submit"
-          className="bg-black text-white text-xs px-9 py-3"
+          className="bg-slate-900 text-white text-xs px-9 py-3"
         >
           SUBSCRIBE
         </button>
