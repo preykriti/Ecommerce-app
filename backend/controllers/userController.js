@@ -60,8 +60,8 @@ const userLogin = async (req, res) => {
     res.status(500).json({ success: false, message: error.message });
     
   }
-  //
 };
+
 const adminLogin = async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -77,5 +77,20 @@ const adminLogin = async (req, res) => {
     }
 };
 
+const getUserProfile = async (req, res) => {
+  try {
+    const userId = req.body.userId;
+    const user = await userModel.findById(userId).select('-password');
+    
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+    
+    res.status(200).json({ success: true, user });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
 
-export {userLogin, userRegister, adminLogin};
+export { userRegister, userLogin, adminLogin, getUserProfile };

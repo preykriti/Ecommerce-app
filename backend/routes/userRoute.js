@@ -1,6 +1,7 @@
 import express from "express";
-import { userLogin, userRegister, adminLogin } from "../controllers/userController.js";
+import { userLogin, userRegister, adminLogin, getUserProfile } from "../controllers/userController.js";
 import {body} from "express-validator";
+import authUser from "../middleware/userAuth.js";
 
 const userRouter = express.Router();
 
@@ -17,8 +18,7 @@ userRouter.post(
 );
 
 userRouter.post("/login", userLogin);
-
 userRouter.post("/admin", adminLogin);
-
+userRouter.get("/profile", authUser, getUserProfile);
 
 export default userRouter;
