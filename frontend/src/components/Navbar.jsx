@@ -27,7 +27,10 @@ const Navbar = () => {
   return (
     <div className="flex items-center justify-between py-5 px-6 font-medium bg-slate-900 text-white">
       <Link to="/">
-        <h1 className="font-bold text-2xl tracking-tight">SHOPPY</h1>
+        <h1 className="font-bold text-2xl tracking-tight">
+          SHOPPY
+          <span className="text-indigo-500 font-extralight">-corner</span>
+        </h1>
       </Link>
 
       <ul className="hidden sm:flex gap-8 text-sm text-slate-200">
@@ -67,7 +70,7 @@ const Navbar = () => {
           />
 
           {token && (
-            <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4">
+            <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4 z-50">
               <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-800 text-slate-200 rounded-lg shadow-xl">
                 <p className="cursor-pointer hover:text-indigo-700 transition">
                   My Profile
