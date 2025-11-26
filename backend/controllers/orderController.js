@@ -50,7 +50,7 @@ const placeOnlineOrder = async (req, res) => {
 
     const payload = {
       return_url: process.env.KHALTI_RETURN_URL,
-      website_url: process.env.KHALTI_WEBSITE_URL,
+      website_url: process.env.FRONTEND_URL,
       amount: amount * 100,
       purchase_order_id: newOrder._id.toString(),
       purchase_order_name: "Order Payment",
